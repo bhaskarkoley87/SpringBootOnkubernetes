@@ -42,20 +42,20 @@ Open the ```cmd``` go to the repository directory
  This command will docker-compose.yml to build the docker image using Dockefile in local directory.
  #### a. docker-compose.yml
  ```
- **version:** "3.7"
-  **services:**
-     **studentinfoservice:**
-        **build:**
-           **context:** .
-           **dockerfile:** Dockerfile
-           **network:** MyStudentInfoNetwork
-        **image:** bhaskarkoley87/studentinfo:latest
-        **ports:**
+ version: "3.7"
+  services:
+     studentinfoservice:
+        build:
+           context: .
+           dockerfile: Dockerfile
+           network: MyStudentInfoNetwork
+        image: bhaskarkoley87/studentinfo:latest
+        ports:
            - "8080:8080"
-        **volumes:**
+        volumes:
          - app-data:/var/lib/data
 
-  **volumes:**
+  volumes:
     app-data:
  ```
  #### b. Dockerfile
