@@ -13,7 +13,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 4. Maven installed
 5. Any IDE for code edit
 
-** If any above iteam is not installed in you machine, please see at the bottom. I have given the steps to install all items.
+** If any above item is not installed in you machine, please see at the bottom. I have given the steps to install all items.
 
 
 ## **Steps to run the application on Kubernetes**
