@@ -13,7 +13,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 4. Maven installed
 5. Any IDE for code edit
 
-## **Steps to run the application on Kubernets**
+## **Steps to run the application on Kubernetes**
 1. Clone the Git repository.
 2. Build the code.
 3. Build the Docker image and push to Docker hub.
