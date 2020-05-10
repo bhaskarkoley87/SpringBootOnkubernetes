@@ -59,7 +59,7 @@ Open the ```cmd``` go to the repository directory
     app-data:
  ```
  #### b. Dockerfile
- ```javascript
+ ```properties
  
  # Starting with Docker base image containing Java runtime
 FROM openjdk:8-jdk-alpine
