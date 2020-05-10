@@ -80,7 +80,52 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
 ### 4. Deploy the application and required services on Kubernetes
 
   ```kubectl apply -f k8s-compose.yaml```
-
+  
+  This command use the k8s-compose.yaml file to pull the Docker image from Docker hub and deploy the docker image with 3 replica and    create a NodePort service in Kubernetes.
+  
+  ```
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: studentinfoservice-deployment
+    namespace: default
+    labels:
+      app: studentinfo
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        app: studentinfo
+    template:
+      metadata:
+        labels:
+          app: studentinfo
+      spec:
+        containers:
+        - name: studentinfos
+          image: bhaskarkoley87/studentinfo:latest
+          ports:
+          - containerPort: 8080
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: studentinfoservice
+    labels:
+      app: studentinfo
+      tier: fullstack
+      role: master
+  spec:
+    type: NodePort
+    ports:
+    - port: 8080
+      targetPort: 8080
+    selector:
+      app: studentinfo
+      role: master
+      tier: fullstack      
+ 
+  ```
 
 ### 5. Expose the application in Kubernetes
  
