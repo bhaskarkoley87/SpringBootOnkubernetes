@@ -16,7 +16,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 ** If any above item is not installed in you machine, please see at the bottom. I have given the steps to install all items.
 
 
-## **Steps to run the application on Kubernetes**
+## Steps to run the application on Kubernetes
 1. Clone the Github repository.
 2. Build the code.
 3. Build the Docker image and push to Docker hub.
@@ -39,12 +39,49 @@ Open the ```cmd``` go to the repository directory
 ### 3. Build the Docker image and push to Docker hub
  
  ```docker-compose push```
-  
+ This command will docker-compose.yml to build the docker image using Dockefile in local directory.
+ #### a. docker-compose.yml
+ ```
+ **version:** "3.7"
+  **services:**
+     **studentinfoservice:**
+        **build:**
+           **context:** .
+           **dockerfile:** Dockerfile
+           **network:** MyStudentInfoNetwork
+        **image:** bhaskarkoley87/studentinfo:latest
+        **ports:**
+           - "8080:8080"
+        **volumes:**
+         - app-data:/var/lib/data
+
+  **volumes:**
+    app-data:
+ ```
+ #### b. Dockerfile
+ ```
+ # Starting with Docker base image containing Java runtime
+FROM openjdk:8-jdk-alpine
+# Added Maintainer Info here. Details of Bhaskar Koley
+LABEL maintainer="bhaskarkoley87"
+# Added a volume pointing to /tmp
+VOLUME /tmp/studentinfovalume
+# This application will be accessible from port 8080 outside the container.
+EXPOSE 8080
+# Copying the jar file to workdir
+WORKDIR /usr/app
+COPY ./target/StudentInfoService-0.0.1.jar /usr/app
+# Defined WORKDIR
+# executing the jar file here...
+ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
+ ```
+
 
 ### 4. Deploy the application and required services on Kubernetes
 
   ```kubectl apply -f k8s-compose.yaml```
-  
- ### 5. Expose the application in Kubernetes
+
+
+### 5. Expose the application in Kubernetes
  
   ```kubectl expose deployment studentinfoservice-deployment --type=LoadBalancer --port 8080 --target-port 8080```
