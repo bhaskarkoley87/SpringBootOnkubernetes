@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+   studentinfoservice:
+      build:
+         context: .
+         dockerfile: Dockerfile
+         network: MyStudentInfoNetwork
+      image: bhaskarkoley87/studentinfo:latest
+      ports:
+         - "8080:8080"
+      volumes:
+       - app-data:/var/lib/data
+      
+volumes:
+  app-data:

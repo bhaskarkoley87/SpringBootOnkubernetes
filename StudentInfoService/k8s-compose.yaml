@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentinfoservice-deployment
+  namespace: default
+  labels:
+    app: studentinfo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: studentinfo
+  template:
+    metadata:
+      labels:
+        app: studentinfo
+    spec:
+      containers:
+      - name: studentinfos
+        image: bhaskarkoley87/studentinfo:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: studentinfoservice
+  labels:
+    app: studentinfo
+    tier: fullstack
+    role: master
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: studentinfo
+    role: master
+    tier: fullstack      
+ 
