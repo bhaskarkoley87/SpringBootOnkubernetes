@@ -15,6 +15,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 
 ** If any above iteam is not installed in you machine, please see at the bottom. I have given the steps to install all items.
 
+
 ## **Steps to run the application on Kubernetes**
 1. Clone the Github repository.
 2. Build the code.
@@ -22,13 +23,28 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 4. Deploy the application and required services on Kubernetes.
 5. Expose the application in Kubernetes.
 
+
 ### 1. Clone the Github repository
 
-```$ git clone https://github.com/bhaskarkoley87/SpringBootOnkubernetes.git
-```
+  ```$ git clone https://github.com/bhaskarkoley87/SpringBootOnkubernetes.git```
+
 
 ### 2. Build the code
 
 Open the ```cmd``` go to the repository directory 
-1. ```cd StudentInfoService```
-2. ```mvn clean install```
+  1. ```cd StudentInfoService```
+  2. ```mvn clean install```
+
+
+### 3. Build the Docker image and push to Docker hub
+ 
+ ```docker-compose push```
+  
+
+### 4. Deploy the application and required services on Kubernetes
+
+  ```kubectl apply -f k8s-compose.yaml```
+  
+ ### 5. Expose the application in Kubernetes
+ 
+  ```kubectl expose deployment studentinfoservice-deployment --type=LoadBalancer --port 8080 --target-port 8080```
