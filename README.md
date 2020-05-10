@@ -23,7 +23,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 4. Deploy the application and required services on Kubernetes.
 5. Expose the application in Kubernetes.
 
-
+@BretFisher What do you think about these updates?
 ### 1. Clone the Github repository
 
   ```$ git clone https://github.com/bhaskarkoley87/SpringBootOnkubernetes.git```
@@ -41,7 +41,7 @@ Open the ```cmd``` go to the repository directory
  ```docker-compose push```
  This command will docker-compose.yml to build the docker image using Dockefile in local directory.
  #### a. docker-compose.yml
- ```
+ ```yaml
  version: "3.7"
   services:
      studentinfoservice:
@@ -83,7 +83,7 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
   
   This command use the k8s-compose.yaml file to pull the Docker image from Docker hub and deploy the docker image with 3 replica and    create a NodePort service in Kubernetes.
   
-  ```
+  ```yaml
   apiVersion: apps/v1
   kind: Deployment
   metadata:
