@@ -23,7 +23,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 4. Deploy the application and required services on Kubernetes.
 5. Expose the application in Kubernetes.
 
-@BretFisher What do you think about these updates?
+
 ### 1. Clone the Github repository
 
   ```$ git clone https://github.com/bhaskarkoley87/SpringBootOnkubernetes.git```
@@ -134,3 +134,4 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
 
 
 @BretFisher Thank you for your tutorials....
+@BretFisher What do you think about these updates?
