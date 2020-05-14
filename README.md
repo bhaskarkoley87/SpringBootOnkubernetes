@@ -3,7 +3,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 
 ![Image of Spring Boot](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/SB_D_K.jpg)
 
-### Some basic tools use as best practices, for code quality check and scalability 
+### Some basic tools use a as best practices, for code quality check and scalability 
 
 ![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/Untitled-3.jpg)
 
@@ -18,16 +18,23 @@ I have also use some tools or API for better
 3. Docker Desktop 19.03.8 with Kubernetes enabled
 4. Maven installed
 5. Any IDE for code edit
+6. Profile creation in SonarCloud
 
 ** If any above item is not installed in you machine, please see at the bottom. I have given the steps to install all items.
 
 
 ## Steps to run the application on Kubernetes
 1. Clone the Github repository.
-2. Build the code.
-3. Build the Docker image and push to Docker hub.
-4. Deploy the application and required services on Kubernetes.
-5. Expose the application in Kubernetes.
+2. Dependencis need to add for the application.
+3. Configuration for Swagger.
+4. Configuration for Log4j2.
+5. Build the code.
+6. Build for SonarCloude report for Code Quality gate.
+7. Build the Docker image and push to Docker hub.
+8. Deploy the application and required services on Kubernetes.
+9. Expose the application in Kubernetes.
+10. Final output from the Service.
+11. Swagger UI output.
 
 
 ### 1. Clone the Github repository
@@ -137,6 +144,15 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
 ### 5. Expose the application in Kubernetes
  
   ```kubectl expose deployment studentinfoservice-deployment --type=LoadBalancer --port 8080 --target-port 8080```
+
+
+### 10. Final output from the Service.
+
+![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/service%20output.PNG)
+
+
+### 11. Swagger UI output.
+![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/swagger.PNG)
 
 
 @BretFisher Thank you for your tutorials....
