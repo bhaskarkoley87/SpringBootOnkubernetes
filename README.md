@@ -380,7 +380,7 @@ After the application start we can see the Swagger Ui to understand the REST API
 ![Image of swagger](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/swagger.PNG)
 
 
-## **Profile creation in SonarCloud
+## Profile creation in SonarCloud
 ..* Open https://sonarcloud.io/ and create your account.
 ..* Login to the SonarCloud account. 
 ..* To create the Organization go to the top right, click on the + icon and select "Create New Organization"
