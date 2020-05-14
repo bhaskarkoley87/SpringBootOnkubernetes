@@ -42,14 +42,222 @@ I have also use some tools or API for better
   ```$ git clone https://github.com/bhaskarkoley87/SpringBootOnkubernetes.git```
 
 
-### 2. Build the code
+### 2. Dependencis need to add for the application
+ 
+ #### pom.xml
+  ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.7.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.bhk</groupId>
+	<artifactId>StudentInfoService</artifactId>
+	<version>0.0.1</version>
+	<name>StudentInfoService</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<swagger.version>2.9.2</swagger.version>
+		<swagger-annotations.version>1.5.21</swagger-annotations.version>
+		<swagger-models.version>1.5.21</swagger-models.version>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+			<!-- <version>2.1.3.RELEASE</version> -->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>2.13.2</version>
+			<type>pom</type>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.reportPath},includes=com.*</argLine>
+					<includes>
+						<include>**/*.class</include>
+					</includes>
+					<test>**/*.java</test>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.6.0.1398</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.4</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>coverage</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
+
+  ```
+  
+  
+### 3. Configuration for Swagger
+
+  Define the Swagger configuration properties in application.properties.
+  
+  ```properties
+  ## Service expose Port
+  server.port=8080
+  
+  ## Swagger Properties
+  api.version=1.0
+  swagger.enabled=true
+  swagger.title=Student Info API
+  swagger.description=Sample Swagger implementation for the `Student Info API` service.
+  swagger.useDefaultResponseMessages=false
+  swagger.enableUrlTemplating=false
+  swagger.deepLinking=true
+  swagger.defaultModelsExpandDepth=1
+  swagger.defaultModelExpandDepth=1
+  swagger.displayOperationId=false
+  swagger.displayRequestDuration=false
+  swagger.filter=false
+  swagger.maxDisplayedTags=0
+  swagger.showExtensions=false
+  ```
+  
+
+### 4. Configuration for Log4j2
+
+  Create the log4j2.xml in the application class path, such as resources directory.
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <Configuration status="TRACE">
+    <Appenders>
+      <Console name="Console" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      </Console>
+    </Appenders>
+    <Loggers>
+      <Root level="trace">
+        <AppenderRef ref="Console"/>
+      </Root>
+    </Loggers>
+  </Configuration>
+  ```
+
+
+### 5. Build the code
 
 Open the ```cmd``` go to the repository directory 
   1. ```cd StudentInfoService```
   2. ```mvn clean install```
 
 
-### 3. Build the Docker image and push to Docker hub
+### 6. Build for SonarCloude report for Code Quality gate
+
+  Execute te following code on command prompt to run the SonarQube scan for code quality check and upload the report to the SonarCloud platform for the details analysed report. 
+  ```
+  mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=<organization name created in Sonarcloud> -Dsonar.login=<SonarCloud tocken for login>
+  
+  ```
+  In first run it will some time. After Build complete you can go to the SonarCloud and see the Scan report.
+  ![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/Code%20Quality%20Gate.PNG)
+  
+
+
+### 7. Build the Docker image and push to Docker hub
  
  ```docker-compose push```
  This command will docker-compose.yml to build the docker image using Dockefile in local directory.
@@ -91,7 +299,7 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
  ```
 
 
-### 4. Deploy the application and required services on Kubernetes
+### 8. Deploy the application and required services on Kubernetes
 
   ```kubectl apply -f k8s-compose.yaml```
   
@@ -141,17 +349,17 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
  
   ```
 
-### 5. Expose the application in Kubernetes
+### 9. Expose the application in Kubernetes
  
   ```kubectl expose deployment studentinfoservice-deployment --type=LoadBalancer --port 8080 --target-port 8080```
 
 
-### 10. Final output from the Service.
+### 10. Final output from the Service
 
 ![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/service%20output.PNG)
 
 
-### 11. Swagger UI output.
+### 11. Swagger UI output
 ![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/swagger.PNG)
 
 
