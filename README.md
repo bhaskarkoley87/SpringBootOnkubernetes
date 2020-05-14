@@ -10,7 +10,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 
 **NOTE:** This is a simple REST API develop with Spring Boot and using Docker Desktop I have deploy the application on Docker with Dockerfile, docker-compose.yml. I have use Kubernetes for the orchestration. In today's market all are in demand. I just want to show some of the tools requied at build phase. There are lost of tools and software are use in this phase, but I am just showing a small part. This development is done on the Windows machine.
 
-## Minimum requirement for this project
+### Minimum requirement for this project
 1. JDK 8+ installed
 2. Git installed
 3. Docker Desktop 19.03.8 with Kubernetes enabled
