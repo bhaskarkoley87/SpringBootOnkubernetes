@@ -381,14 +381,14 @@ After the application start we can see the Swagger Ui to understand the REST API
 
 
 ## **Profile creation in SonarCloud
-a. Open https://sonarcloud.io/ and create your account.
-b. Login to the SonarCloud account. 
-c. To create the Organization go to the top right, click on the + icon and select "Create New Organization"
-b. You will see the screen as below. Fill up the details and click "continue."
-c. On the next screen, select a free plan and click on "create organization."
-e. Click on "Create New Project," and on the next screen, you will have two tabs: "select repositories" and "create manually"
-f. Click on "Configure Analysis" to create the token for login.
-g. Generate the token and then copy your token.
+..* Open https://sonarcloud.io/ and create your account.
+..* Login to the SonarCloud account. 
+..* To create the Organization go to the top right, click on the + icon and select "Create New Organization"
+..* You will see the screen as below. Fill up the details and click "continue."
+..* On the next screen, select a free plan and click on "create organization."
+..* Click on "Create New Project," and on the next screen, you will have two tabs: "select repositories" and "create manually"
+..* Click on "Configure Analysis" to create the token for login.
+..* Generate the token and then copy your token.
 
 
 @BretFisher Thank you for your tutorials....
