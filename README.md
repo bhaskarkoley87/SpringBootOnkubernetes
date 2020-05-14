@@ -374,7 +374,7 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
 
 
 ### 11. Swagger UI output
-After the application start we can see the Swagger Ui to understand the REST API better. Open the URL [Swagger url](http://localhost:8080/swagger-ui.html#/)
+After the application start we can see the Swagger Ui to understand the REST API better. Open the URL http://localhost:8080/swagger-ui.html#/ automatic![Swagger url](http://localhost:8080/swagger-ui.html#/)
 	
 ![Image of swagger](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/swagger.PNG)
 
