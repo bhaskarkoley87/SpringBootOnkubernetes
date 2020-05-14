@@ -10,7 +10,9 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 
 **Project Intro:** This is a simple REST API develop with Spring Boot and using Docker Desktop I have deploy the application on Docker with Dockerfile, docker-compose.yml. I have use Kubernetes for the orchestration. In today's market all are in demand. I just want to show some of the tools requied at build phase. There are lost of tools and software are use in this phase, but I am just showing a small part. This development is done on the Windows machine.
 
-I have also use some tools or API for better 
+I have also use some tools or API as a best practice which help developer for log tracking. I have also used Swagger. Swagger is an open-source software framework backed by a large ecosystem of tools that helps developers design, build, document, and consume RESTful web services.
+
+For code quality check I have used the SonarQube which is for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities.
 
 ### Minimum requirement for this project
 1. JDK 8+ installed
@@ -20,7 +22,6 @@ I have also use some tools or API for better
 5. Any IDE for code edit
 6. Profile creation in SonarCloud
 
-** If any above item is not installed in you machine, please see at the bottom. I have given the steps to install all items.
 
 
 ## Steps to run the application on Kubernetes
@@ -377,6 +378,17 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
 After the application start we can see the Swagger Ui to understand the REST API better. Open the URL http://localhost:8080/swagger-ui.html#/ automatic![Swagger url](http://localhost:8080/swagger-ui.html#/)
 	
 ![Image of swagger](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/swagger.PNG)
+
+
+## **Profile creation in SonarCloud
+a) Open https://sonarcloud.io/ and create your account.
+b) Login to the SonarCloud account. 
+c) To create the Organization go to the top right, click on the + icon and select "Create New Organization"
+b) You will see the screen as below. Fill up the details and click "continue."
+c) On the next screen, select a free plan and click on "create organization."
+e) Click on "Create New Project," and on the next screen, you will have two tabs: "select repositories" and "create manually"
+f) Click on "Configure Analysis" to create the token for login.
+g) Generate the token and then copy your token.
 
 
 @BretFisher Thank you for your tutorials....
