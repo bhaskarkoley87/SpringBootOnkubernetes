@@ -235,6 +235,7 @@ I have also use some tools or API for better
       </Root>
     </Loggers>
   </Configuration>
+
   ```
 
 
@@ -248,21 +249,28 @@ Open the ```cmd``` go to the repository directory
 ### 6. Build for SonarCloude report for Code Quality gate
 
   Execute te following code on command prompt to run the SonarQube scan for code quality check and upload the report to the SonarCloud platform for the details analysed report. 
+  
   ```
   mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=<organization name created in Sonarcloud> -Dsonar.login=<SonarCloud tocken for login>
   
   ```
+  
   In first run it will some time. After Build complete you can go to the SonarCloud and see the Scan report.
-  ![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/Code%20Quality%20Gate.PNG)
+  ![Image of sc](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/Code%20Quality%20Gate.PNG)
   
 
 
 ### 7. Build the Docker image and push to Docker hub
  
- ```docker-compose push```
+ ```
+ docker-compose push
+ 
+ ```
  This command will docker-compose.yml to build the docker image using Dockefile in local directory.
+ 
  #### a. docker-compose.yml
  ```yaml
+ 
  version: "3.7"
   services:
      studentinfoservice:
@@ -278,6 +286,7 @@ Open the ```cmd``` go to the repository directory
 
   volumes:
     app-data:
+    
  ```
  #### b. Dockerfile
  ```properties
@@ -296,16 +305,21 @@ COPY ./target/StudentInfoService-0.0.1.jar /usr/app
 # Defined WORKDIR
 # executing the jar file here...
 ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
+
  ```
 
 
 ### 8. Deploy the application and required services on Kubernetes
 
-  ```kubectl apply -f k8s-compose.yaml```
+  ```
+  kubectl apply -f k8s-compose.yaml
+  
+  ```
   
   This command use the k8s-compose.yaml file to pull the Docker image from Docker hub and deploy the docker image with 3 replica and    create a NodePort service in Kubernetes.
   
   ```yaml
+  
   apiVersion: apps/v1
   kind: Deployment
   metadata:
@@ -356,15 +370,15 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
 
 ### 10. Final output from the Service
 
-![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/service%20output.PNG)
+![Image of output](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/service%20output.PNG)
 
 
 ### 11. Swagger UI output
+After the application start we can see the Swagger Ui to understand the REST API better. Open the URL [Swagger url](http://localhost:8080/swagger-ui.html#/)
 	
-	After the application start we can see the Swagger Ui to understand the REST API better. Open the URL http://localhost:8080/swagger-ui.html#/
-	
-![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/swagger.PNG)
+![Image of swagger](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/swagger.PNG)
 
 
 @BretFisher Thank you for your tutorials....
+
 @BretFisher What do you think about these updates?
