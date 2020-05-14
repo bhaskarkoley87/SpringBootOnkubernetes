@@ -3,7 +3,7 @@ REST service in Spring-Boot running on Docker with Kubernetes orchestration
 
 ![Image of Spring Boot](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/SB_D_K.jpg)
 
-### Some basic tools use a as best practices, for code quality check and scalability 
+### Some basic tools use as best practices and for code quality check
 
 ![Image of tools](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/Untitled-3.jpg)
 
