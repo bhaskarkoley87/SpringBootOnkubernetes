@@ -312,6 +312,9 @@ ENTRYPOINT ["java","-jar","StudentInfoService-0.0.1.jar"]
 
 ### 8. Deploy the application and required services on Kubernetes
 
+Kubernetes Architecture and Concepts
+ ![Image of sc](https://github.com/bhaskarkoley87/SpringBootOnkubernetes/blob/master/images/kubernetes-constructs-concepts-architecture-1024x800.jpg)
+
   ```
   kubectl apply -f k8s-compose.yaml
   
